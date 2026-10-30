@@ -49,5 +49,20 @@ if st. session_state.timer_running and st.session_state.shift_start:
     if remaining_seconds == 0:
         st.error("🚨 SHIFT COMPLETE: Conduct final OT/ICS safety handoff immediately!")
 else:
-    st.info("Shift is currently offline. Click **'Start Shift'** in the sidebar to begin tracking.")    
-   
+    st.info("Shift is currently offline. Click **'Start Shift'** in the sidebar to begin tracking.") 
+    #section 2: OT/ICS operationsl safety cheklists
+    st.divider()
+st.subheader("OT/ICS Operational Safety Checklist")
+
+col_a, col_b = st.columns(2)
+with col_a:   
+    st.markdown("### Critical hardware & Environment")
+    check_temp = st.checkbox("Verify Glycol / Cold Room Chiller Setpoints (≤ 4°C)")
+    check_valves = st.checkbox("Confirm Manual & Solenoid Pressure Relief Valves Clear")
+    check_co2 = st.checkbox("Inspect Ambient CO2 Monitor & Ventilation Fans")
+    
+with col_b:
+    st.markdown("### Cyber-Physical & Network Integrity")
+    check_plc = st.checkbox("Inspect PLC/HMI Enclosures (No unauthorized USB/cables)")
+    check_telemetry = st.checkbox("Telemetry Sanity Check (Sensor values within nominal ranges)")
+    check_remote = st.checkbox("Verify External Remote Maintenance Sessions Logged / Closed")   
