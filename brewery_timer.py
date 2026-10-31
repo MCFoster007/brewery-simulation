@@ -50,7 +50,7 @@ if st. session_state.timer_running and st.session_state.shift_start:
         st.error("🚨 SHIFT COMPLETE: Conduct final OT/ICS safety handoff immediately!")
 else:
     st.info("Shift is currently offline. Click **'Start Shift'** in the sidebar to begin tracking.") 
-    #section 2: OT/ICS operationsl safety cheklists
+    ### #section 2: OT/ICS operationsl safety cheklists
     st.divider()
 st.subheader("OT/ICS Operational Safety Checklist")
 
@@ -66,3 +66,19 @@ with col_b:
     check_plc = st.checkbox("Inspect PLC/HMI Enclosures (No unauthorized USB/cables)")
     check_telemetry = st.checkbox("Telemetry Sanity Check (Sensor values within nominal ranges)")
     check_remote = st.checkbox("Verify External Remote Maintenance Sessions Logged / Closed")   
+   
+   # Calculate total checks completed
+total_checks = sum([check_temp, check_valves, check_co2, check_plc, check_telemetry, check_remote])
+if total_checks == 6:
+    st.success("✅ All physical and cyber safety checkpoints verified!")
+   
+   
+    # --- Section 3: Shift Log & Audit Trail ---
+st.divider()
+st.subheader("📜 Operational Audit Log")
+
+if st.session_state.log_entries:
+    for entry in reversed(st.session_state.log_entries):
+        st.write(f"- {entry}")
+else:
+    st.caption("No operational events logged for this session yet.")
