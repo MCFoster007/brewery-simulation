@@ -186,3 +186,4 @@ if st.session_state.log_entries:
         st.markdown(f"`{entry}`")
 else:
     st.caption("No operational events logged for this session yet.")
+    
